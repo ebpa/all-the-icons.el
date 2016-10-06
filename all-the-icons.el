@@ -607,7 +607,10 @@ When FAMILY is non-nil, limit the candidates to the icon set matching it."
          (selection (completing-read prompt candidates nil t))
          (result    (cdr (assoc selection candidates))))
 
-    (if arg (prin1 result) (insert result))))
+    (if arg
+        (let ((standard-output (current-buffer)))
+          (prin1 result))
+      (insert result))))
 
 ;; Debug Helpers
 
